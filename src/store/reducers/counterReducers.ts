@@ -1,10 +1,10 @@
-import {CounterAction, CounterActionTypes, CounterTypes} from "../../types/counterTypes";
+import {CounterAction, CounterActionTypes, CounterStateTypes} from "../../types/counterTypes";
 
-const initialState:CounterTypes = {
+const initialState:CounterStateTypes = {
     count: 0
 }
 
-export const counterReducers = (state = initialState, action: CounterAction):CounterTypes => {
+export const counterReducers = (state = initialState, action: CounterAction):CounterStateTypes => {
             switch (action.type) {
                 case CounterActionTypes.INCREMENT:
                     return {...state, count: state.count+1 }

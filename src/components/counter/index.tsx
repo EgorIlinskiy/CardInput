@@ -4,7 +4,6 @@ import {useActions} from "../../hooks/useActions";
 import {DecrementCount, IncrementCount} from "../../store/actions/counter";
 function Counter(){
     const count = useTypedSelector(state => state.counter.count)
-    console.log(count)
     const  {IncrementCount, DecrementCount}  = useActions()
     return <div>
         <h1>
