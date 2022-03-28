@@ -16,7 +16,7 @@ function generateYears():object[]{
 
 function generateMonths():object[]{
    let months:object[]= []
-    for(let i = 1; i<12; i++){
+    for(let i = 1; i<=12; i++){
         months.push({
             value: i,
             label: i
