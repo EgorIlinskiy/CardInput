@@ -37,12 +37,12 @@ const InputForms = () => {
                 .required('Required!')
                 .test('cvv-number','CVV code is invalid', value => valid.cvv(value).isValid)
                 .length(3,'Invalid cvv'),
-            cardYear: yup.number()
-                .required('Required!'),
-                //.test('card-year','Invalid year', value => valid.expirationYear(value).isValid),
-            cardMonth: yup.number()
+            cardYear: yup.string()
                 .required('Required!')
-                //.test('card-month','Invalid month', value => valid.expirationMonth(value).isValid)
+                .test('card-year','Invalid year', value => valid.expirationYear(value).isValid),
+            cardMonth: yup.string()
+                .required('Required!')
+                .test('card-month','Invalid month', value => valid.expirationMonth(value).isValid)
 
         })
     })
@@ -73,7 +73,7 @@ const InputForms = () => {
                         id={"cardMonth"}
                         name={'cardMonth'}
                         handleChange={(option:any):any=> {
-                            setFieldValue("cardMonth", option.label)
+                            setFieldValue("cardMonth", option.label.toString())
                         }}
                         options={monthOptions}
                         onBlur={handleBlur}
@@ -86,7 +86,7 @@ const InputForms = () => {
                         id={"cardYear"}
                         name={'cardYear'}
                         handleChange={(option:any):any=> {
-                            setFieldValue("cardYear", option.label)
+                            setFieldValue("cardYear", option.label.toString())
                         }}
                         options={yearOptions}
                         onBlur={handleBlur}
