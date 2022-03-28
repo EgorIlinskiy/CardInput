@@ -1,5 +1,5 @@
 import React from 'react';
-import InputForms from "./components/card/inputForms";
+import InputForms from "./components/card/InputForms";
 
 function App() {
   return (
