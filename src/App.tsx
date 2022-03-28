@@ -1,17 +1,10 @@
 import React from 'react';
-import Counter from "./components/counter";
-import InputCard from "./components/card/input";
-
+import InputForms from "./components/card/inputForms";
 
 function App() {
   return (
     <div className="App" style={{width:'600px',margin:'0 auto'}}>
-        <Counter/>
-        <InputCard placeholder={'4584'}
-                    label='Credit card number'
-                   isHidden={false}
-                   maxSize={16}
-        />
+        <InputForms/>
     </div>
   );
 }

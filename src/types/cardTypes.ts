@@ -1,6 +1,10 @@
 export interface InputCardProps{
     placeholder: string;
     label: string;
-    maxSize:number;
-    isHidden:boolean;
+    name:string;
+}
+
+export interface CardFormValues{
+    cardNumber:string;
+    cvvNumber:string;
 }
