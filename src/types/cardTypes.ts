@@ -1,4 +1,5 @@
-import {ChangeEventHandler} from "react";
+import {ChangeEvent, ChangeEventHandler} from "react";
+import {ActionMeta, MultiValue, SingleValue} from "react-select";
 
 export interface ICustomInput{
     label:string;
@@ -8,13 +9,18 @@ export interface ICustomInput{
     placeholder:string;
     touched?:boolean;
     value:string;
+    width?:string;
 }
 
 export interface ISelectInput{
-    value: string;
     id:string;
-    handleChange:ChangeEventHandler<HTMLInputElement>;
-    options: Object[];
+    handleChange:any;
+    options:any;
+    onBlur: any;
+    errors?:string;
+    name:string;
+    touched?:boolean;
+    placeholder?:string;
 }
 
 

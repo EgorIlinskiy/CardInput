@@ -1,55 +1,114 @@
-.card-container{
-  height: 500px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: start;
-  padding: 20px;
-  border-radius: 30px;
-  box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
-  .card-input-text{
-     font-size: 2rem;
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap');body{
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  background: #2e69b0;
+  font-size: 20px;
+  .payments-container{
+    background: #fff;
+    border-radius: 5px;
+    padding: 30px;
+    margin: 150px auto;
+    -webkit-box-shadow: 12px 8px 20px 0px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 12px 8px 20px 0px rgba(34, 60, 80, 0.2);
+    box-shadow: 12px 8px 20px 0px rgba(34, 60, 80, 0.2);
+    .payments-card-input-text-error{
+      color: rgb(255, 26, 26);
+    }
+    .payments-header{
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      margin-bottom: 50px;
+      padding-left: 3px;
+     .payments-header-main{
+       font-size: 3rem;
+       width: 100%;
+       margin-bottom: 10px;
+     }
+      .payments-header-secondary{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        span{
+          font-size: 1.8rem;
+        }
+      }
+    }
+    .payments-body{
+      .payments-inputs-container{
+       // border: 1px solid red;
+        margin-bottom: 30px;
+        .payments-card-input-text{
+          padding-left: 3px;
+        }
+        .payments-card-input{
+          margin-top: 7px;
+          padding: 10px;
+          width: 96%;
+          font-size: 1.4rem;
+          border-radius: 5px;
+          font-family: 'Open Sans', sans-serif;
+          border: 1px solid rgb(137, 137, 137,0.5);
+        }
+        .payments-card-input-error{
+          border: 1px solid rgb(255, 26, 26,0.5)
+        }
+      }
+      .payments-card-expiration{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        .payments-card-expiration-text{
+          display: block;
+          width: 100%;
+          margin-bottom: 8px;
+          padding-left: 3px;
+        }
+        .payments-card-expiration-select{
+            width: 45%;
+            margin-bottom: 20px;
+        }
+      }
+      .payments-card-input-cvv{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        .payments-input-container{
+          .payments-card-input{
+          width: auto !important;
+          }
+        }
+        .payments-card-input-cvv-text{
+          display: block;
+          width: 50%;
+          color:rgb(137, 137, 137,0.8);
+        }
+      }
+    }
   }
-.inputs-container{
-  margin-top: 20px;
-}
-  .card-input{
-    display: block;
-    padding: 0.375rem 0.75rem;
-    font-family: inherit;
-    font-size: 2rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #212529;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid #bdbdbd;
-    border-radius: 0.25rem;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  }
-  .card-error{
-    color:red;
-    font-size: 2rem;
-  }
-  .card-expiration{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding-top: 30px;
-    font-size: 1.2rem;
-  }
-  .card-submit{
-    background-color: cornflowerblue;
-    border: none;
-    color: white;
-    padding: 15px 32px;
+  .payments-card-submit{
+    color:white;
+    background: #488bdb;
+    border:none;
+    width: 80%;
+    height: 60px;
+    border-radius: 5px;
+    margin: 0 auto;
     text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin-top: 20px;
-
+    display: block;
+    font-size: 1.2rem;
+    &:hover{
+      background: #4c92e7;
+    }
+    &:disabled{
+      background: #3566a1;
+    }
   }
 
 }

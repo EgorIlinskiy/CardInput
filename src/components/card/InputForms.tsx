@@ -1,5 +1,5 @@
 import React from 'react';
-import {useFormik, FormikProps} from "formik";
+import {useFormik, FormikProps, FormikHelpers} from "formik";
 import * as yup from 'yup'
 import valid from 'card-validator'
 import './card.scss'
@@ -7,7 +7,6 @@ import CustomInput from "./CustomInput";
 import SelectForm from "./SelectForm";
 import {monthOptions, yearOptions} from "./options/optionsForSelect";
 import {IFormValues} from "../../types/cardTypes";
-import {json} from "stream/consumers";
 
 
 const InputForms = () => {
@@ -17,7 +16,9 @@ const InputForms = () => {
         handleBlur,
         errors,
         touched,
-        setFieldValue}:FormikProps<IFormValues> = useFormik({
+        setFieldValue,
+    isValid
+    }:FormikProps<IFormValues> = useFormik({
         initialValues:{
             cardNumber:'',
             cardCVV:'',
@@ -25,10 +26,9 @@ const InputForms = () => {
             cardMonth:''
         },
 
-        onSubmit:(values)=>{
+        onSubmit:(values) => {
             console.log(values)
-        },
-
+    },
         validationSchema:yup.object({
             cardNumber:yup.string()
                 .typeError('Card number must contains only numbers!')
@@ -43,7 +43,7 @@ const InputForms = () => {
                 .test('card-year','Invalid year', value => valid.expirationYear(value).isValid),
             cardMonth: yup.string()
                 .required('Required!')
-                .test('card-month','Invalid month', (value,ctx) => {
+                .test('card-month','Credit card expire', (value,ctx) => {
                     let date = new Date()
                     let currentYear  = date.getFullYear()
                     let currentMonth  = date.getMonth()
@@ -56,10 +56,7 @@ const InputForms = () => {
 
         })
     })
-
-    return (
-        <div className='card-container'>
-            <form onSubmit={handleSubmit}>
+    return ( <form onSubmit={handleSubmit}>
                 <CustomInput name={'cardNumber'}
                              touched={touched.cardNumber}
                              handleChange={handleChange}
@@ -68,15 +65,10 @@ const InputForms = () => {
                              value={values.cardNumber}
                              label={'Credit card number'}
                 />
-                <CustomInput name={'cardCVV'}
-                             touched={touched.cardCVV}
-                             handleChange={handleChange}
-                             placeholder={''}
-                             errors={errors.cardCVV}
-                             value={values.cardCVV}
-                             label={'CVV'}
-                />
-                <div className={'card-expiration'}>
+
+                <div className={'payments-card-expiration'}>
+                    <div className={`payments-card-expiration-text ${touched.cardMonth && touched.cardYear && errors.cardMonth && errors.cardYear ? 'payments-card-input-text-error' :''}`
+                    }>Expiration</div>
                     <SelectForm
                         id={"cardMonth"}
                         name={'cardMonth'}
@@ -89,7 +81,6 @@ const InputForms = () => {
                         touched={touched.cardMonth}
                         placeholder = {'Month'}
                     />
-
                     <SelectForm
                         id={"cardYear"}
                         name={'cardYear'}
@@ -103,11 +94,21 @@ const InputForms = () => {
                         placeholder = {'Year'}
 
                     />
-
                 </div>
-                <button type='submit' className='card-submit'>Submit</button>
+                <div className={'payments-card-input-cvv'}>
+                    <CustomInput name={'cardCVV'}
+                                 touched={touched.cardCVV}
+                                 handleChange={handleChange}
+                                 placeholder={''}
+                                 errors={errors.cardCVV}
+                                 value={values.cardCVV}
+                                 label={'CVV / CVC'}
+                                 width={'auto'}
+                    />
+                    <span className={'payments-card-input-cvv-text'}>3 or 4 digits code</span>
+                </div>
+                <button type='submit' className='payments-card-submit' disabled={!isValid}>Pay now</button>
             </form>
-        </div>
     );
 };
 
