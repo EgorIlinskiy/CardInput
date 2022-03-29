@@ -7,6 +7,7 @@ import CustomInput from "./CustomInput";
 import SelectForm from "./SelectForm";
 import {monthOptions, yearOptions} from "./options/optionsForSelect";
 import {IFormValues} from "../../types/cardTypes";
+import {json} from "stream/consumers";
 
 
 const InputForms = () => {
@@ -42,12 +43,19 @@ const InputForms = () => {
                 .test('card-year','Invalid year', value => valid.expirationYear(value).isValid),
             cardMonth: yup.string()
                 .required('Required!')
-                .test('card-month','Invalid month', value => valid.expirationMonth(value).isValid)
+                .test('card-month','Invalid month', (value,ctx) => {
+                    let date = new Date()
+                    let currentYear  = date.getFullYear()
+                    let currentMonth  = date.getMonth()
+                    if(value === undefined) return  false
+                    if(ctx.parent.cardYear == currentYear && parseInt(value) >= currentMonth+1) {
+                        return  true
+                    }
+                    return ctx.parent.cardYear > currentYear;
+                })
 
         })
     })
-
-
 
     return (
         <div className='card-container'>
@@ -77,8 +85,8 @@ const InputForms = () => {
                         }}
                         options={monthOptions}
                         onBlur={handleBlur}
-                        errors = {errors.cardYear}
-                        touched={touched.cardYear}
+                        errors = {errors.cardMonth}
+                        touched={touched.cardMonth}
                         placeholder = {'Month'}
                     />
 
