@@ -14,6 +14,7 @@ const SavedCards = () => {
 
     const renderCards = () =>{
         return cards.map((card)=>{
+            console.log(card.cardId)
          return  <div key={card.cardId}
                       className={'payments-card-saved-container'}
                       onClick={()=>{

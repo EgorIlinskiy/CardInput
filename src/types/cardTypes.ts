@@ -20,6 +20,7 @@ export interface ISelectInput{
     name:string;
     touched?:boolean;
     placeholder?:string;
+    defaultValue: string;
 }
 
 

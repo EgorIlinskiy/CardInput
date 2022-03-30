@@ -15,7 +15,6 @@ export function SwitchMode():CardActions{
 }
 
 export function SetPreselectedCard(id:number):CardActions{
-    console.log('action ', id)
     return {
         type: CardActionTypes.SET_PRESELECTED,
         payload: id

@@ -3,8 +3,8 @@ import _ from "lodash";
 
 const initialState:CardStateType = {
     cards:[
-        {   cardId:1,
-            cardNumber: "41111111111111",
+        {   cardId:5,
+            cardNumber: "4111111111111111",
             cardMonth: "10",
             cardYear: "2026",
             cardCVV: "123"
@@ -38,7 +38,7 @@ export const cardReducers = (state = initialState, action: CardActions):CardStat
                 cardCVV: action.payload.cardCVV,
                 cardNumber: action.payload.cardNumber,
                 cardMonth: action.payload.cardMonth,
-                cardYear: action.payload.cardMonth
+                cardYear: action.payload.cardYear
             })
             console.log(newCards)
             return {...state, cards:newCards}
@@ -47,7 +47,7 @@ export const cardReducers = (state = initialState, action: CardActions):CardStat
             return {...state, payMode: !state.payMode}
 
         case CardActionTypes.SET_PRESELECTED:
-            return {...state,payMode:!state.payMode, preSelectedId: action.payload}
+            return {...state, payMode:!state.payMode, preSelectedId: action.payload}
 
         default:
             return state

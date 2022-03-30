@@ -11,14 +11,23 @@ import {useActions} from "../../hooks/useActions";
 import {SwitchMode} from "../../store/actions/card";
 import {useTypedSelector} from "../../hooks/useTypedSelector";
 
-
 const InputForms = () => {
 
     const {AddNewCard, SwitchMode} = useActions()
-    const preSelected = useTypedSelector(state => state.card.preSelectedId)
-    const cardData = useTypedSelector(state =>
-        state.card.cards.find(card=>card.cardId = preSelected)
-    )
+   const preSelected = useTypedSelector(state => state.card.preSelectedId)
+    const cardData = useTypedSelector(state => state.card).cards.filter(card=>{
+        return card.cardId === preSelected
+    })[0]
+
+
+    const initialValues:IFormValues = {
+        cardNumber: cardData !== undefined ? cardData.cardNumber : '',
+        cardCVV:cardData !== undefined ? cardData.cardCVV : '',
+        cardYear: cardData !== undefined ? cardData.cardYear : '',
+        cardMonth:cardData !== undefined ? cardData.cardMonth : '',
+        saveCard: false
+    }
+
 
     const {values,
         handleSubmit,
@@ -28,13 +37,7 @@ const InputForms = () => {
         touched,
         setFieldValue
     }:FormikProps<IFormValues> = useFormik({
-        initialValues:{
-            cardNumber:'',
-            cardCVV:'',
-            cardYear: '',
-            cardMonth:'',
-            saveCard: false
-        },
+        initialValues:initialValues,
 
         onSubmit:(values) => {
             console.log(values)
@@ -67,7 +70,6 @@ const InputForms = () => {
 
         })
     })
-
     return ( <form onSubmit={handleSubmit}>
                 <CustomInput name={'cardNumber'}
                              touched={touched.cardNumber}
@@ -89,6 +91,7 @@ const InputForms = () => {
                         }}
                         options={monthOptions}
                         onBlur={handleBlur}
+                        defaultValue = {values.cardMonth}
                         errors = {errors.cardMonth}
                         touched={touched.cardMonth}
                         placeholder = {'Month'}
@@ -101,6 +104,7 @@ const InputForms = () => {
                         }}
                         options={yearOptions}
                         onBlur={handleBlur}
+                        defaultValue = {values.cardYear}
                         errors = {errors.cardYear}
                         touched={touched.cardYear}
                         placeholder = {'Year'}

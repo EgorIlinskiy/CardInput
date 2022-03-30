@@ -4,7 +4,7 @@ import {ISelectInput} from "../../types/cardTypes";
 
 
 
-function SelectForm( {handleChange, options,errors,onBlur,id,name,touched,placeholder}:ISelectInput) {
+function SelectForm( {handleChange, options,errors,onBlur,id,name,touched,placeholder, defaultValue}:ISelectInput) {
      const customStyles: StylesConfig<any> = {
          control: (provided) => {
              return {
@@ -27,9 +27,8 @@ function SelectForm( {handleChange, options,errors,onBlur,id,name,touched,placeh
                id={id}
                name={name}
                onBlur={onBlur}
-               placeholder={placeholder}
+               placeholder={defaultValue === '' ? placeholder : defaultValue}
                styles={customStyles}
-
            />
        </div>
 }
