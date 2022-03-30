@@ -1,5 +1,5 @@
 import React from 'react';
-import {useFormik, FormikProps, FormikHelpers} from "formik";
+import {useFormik, FormikProps, FormikHelpers, Field} from "formik";
 import * as yup from 'yup'
 import valid from 'card-validator'
 import './card.scss'
@@ -8,11 +8,17 @@ import SelectForm from "./SelectForm";
 import {monthOptions, yearOptions} from "./options/optionsForSelect";
 import {IFormValues} from "../../types/cardTypes";
 import {useActions} from "../../hooks/useActions";
+import {SwitchMode} from "../../store/actions/card";
+import {useTypedSelector} from "../../hooks/useTypedSelector";
 
 
 const InputForms = () => {
 
-    const {AddNewCard} = useActions()
+    const {AddNewCard, SwitchMode} = useActions()
+    const preSelected = useTypedSelector(state => state.card.preSelectedId)
+    const cardData = useTypedSelector(state =>
+        state.card.cards.find(card=>card.cardId = preSelected)
+    )
 
     const {values,
         handleSubmit,
@@ -20,18 +26,19 @@ const InputForms = () => {
         handleBlur,
         errors,
         touched,
-        setFieldValue,
+        setFieldValue
     }:FormikProps<IFormValues> = useFormik({
         initialValues:{
             cardNumber:'',
             cardCVV:'',
             cardYear: '',
-            cardMonth:''
+            cardMonth:'',
+            saveCard: false
         },
 
         onSubmit:(values) => {
             console.log(values)
-           AddNewCard(values)
+            if(values.saveCard) AddNewCard(values)
     },
         validationSchema:yup.object({
             cardNumber:yup.string()
@@ -114,6 +121,23 @@ const InputForms = () => {
                 </div>
                 <button type='submit' className='payments-card-submit'// disabled={Object.keys(errors).length>0}
                  >Pay now</button>
+            <div className={'payments-card-line'}></div>
+            <div className={'payments-card-settings'}>
+                <div className={'payments-card-settings-select'}
+                    onClick={()=>{SwitchMode()}}
+                >
+                    Choose card from the saved
+                </div>
+               <label>
+                   <input type={'checkbox'}
+                          name={'saveCard'}
+                          checked={values.saveCard}
+                          onChange={handleChange}
+                   />
+                       Save card
+               </label>
+
+           </div>
             </form>
     );
 };

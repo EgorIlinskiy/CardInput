@@ -1,8 +1,13 @@
 import React from 'react';
 import InputForms from "./InputForms";
 import VisaLogo from "../../assets/VisaLogo";
+import SavedCards from "./SavedCards";
+import {useTypedSelector} from "../../hooks/useTypedSelector";
 
 const CardPayments = () => {
+
+    const payMode = useTypedSelector((state)=>state.card.payMode)
+
     return (
         <div className='payments-container'>
             <div className={'payments-header'}>
@@ -13,7 +18,8 @@ const CardPayments = () => {
                </div>
             </div>
             <div className={'payments-body'}>
-                 <InputForms/>
+                {payMode  ?    <InputForms/> : <SavedCards/>}
+
             </div>
         </div>
     );
