@@ -3,7 +3,7 @@ import CardPayments from "./components/card";
 
 function App() {
   return (
-    <div className="App" style={{width:'600px',margin:'0 auto'}}>
+    <div className="App">
         <CardPayments/>
     </div>
   );

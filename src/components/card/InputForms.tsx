@@ -17,7 +17,8 @@ const InputForms = () => {
         errors,
         touched,
         setFieldValue,
-    isValid
+        isValid,
+
     }:FormikProps<IFormValues> = useFormik({
         initialValues:{
             cardNumber:'',
@@ -56,6 +57,7 @@ const InputForms = () => {
 
         })
     })
+
     return ( <form onSubmit={handleSubmit}>
                 <CustomInput name={'cardNumber'}
                              touched={touched.cardNumber}
@@ -107,7 +109,8 @@ const InputForms = () => {
                     />
                     <span className={'payments-card-input-cvv-text'}>3 or 4 digits code</span>
                 </div>
-                <button type='submit' className='payments-card-submit' disabled={!isValid}>Pay now</button>
+                <button type='submit' className='payments-card-submit'// disabled={Object.keys(errors).length>0}
+                 >Pay now</button>
             </form>
     );
 };
