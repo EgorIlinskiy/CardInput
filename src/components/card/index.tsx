@@ -3,10 +3,11 @@ import InputForms from "./InputForms";
 import VisaLogo from "../../assets/VisaLogo";
 import SavedCards from "./SavedCards";
 import {useTypedSelector} from "../../hooks/useTypedSelector";
+import {ModeSelector} from "../../store/selectors/cardSelectors";
 
 const CardPayments = () => {
 
-    const payMode = useTypedSelector((state)=>state.card.payMode)
+    const payMode = useTypedSelector(ModeSelector)
 
     return (
         <div className='payments-container'>

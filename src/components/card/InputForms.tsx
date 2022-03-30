@@ -10,12 +10,13 @@ import {IFormValues} from "../../types/cardTypes";
 import {useActions} from "../../hooks/useActions";
 import {SwitchMode} from "../../store/actions/card";
 import {useTypedSelector} from "../../hooks/useTypedSelector";
+import {CardsSelector, preSelectedIdSelector} from "../../store/selectors/cardSelectors";
 
 const InputForms = () => {
 
     const {AddNewCard, SwitchMode} = useActions()
-   const preSelected = useTypedSelector(state => state.card.preSelectedId)
-    const cardData = useTypedSelector(state => state.card).cards.filter(card=>{
+   const preSelected = useTypedSelector(preSelectedIdSelector)
+    const cardData = useTypedSelector(CardsSelector).filter(card=>{
         return card.cardId === preSelected
     })[0]
 
@@ -108,7 +109,6 @@ const InputForms = () => {
                         errors = {errors.cardYear}
                         touched={touched.cardYear}
                         placeholder = {'Year'}
-
                     />
                 </div>
                 <div className={'payments-card-input-cvv'}>
