@@ -7,9 +7,13 @@ import CustomInput from "./CustomInput";
 import SelectForm from "./SelectForm";
 import {monthOptions, yearOptions} from "./options/optionsForSelect";
 import {IFormValues} from "../../types/cardTypes";
+import {useActions} from "../../hooks/useActions";
 
 
 const InputForms = () => {
+
+    const {AddNewCard} = useActions()
+
     const {values,
         handleSubmit,
         handleChange,
@@ -17,8 +21,6 @@ const InputForms = () => {
         errors,
         touched,
         setFieldValue,
-        isValid,
-
     }:FormikProps<IFormValues> = useFormik({
         initialValues:{
             cardNumber:'',
@@ -29,6 +31,7 @@ const InputForms = () => {
 
         onSubmit:(values) => {
             console.log(values)
+           AddNewCard(values)
     },
         validationSchema:yup.object({
             cardNumber:yup.string()

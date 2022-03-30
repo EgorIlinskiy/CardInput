@@ -13,7 +13,7 @@ const CustomInput = ({label,errors, handleChange, name,placeholder, touched,valu
                        className={`payments-card-input ${errors && touched ? 'payments-card-input-error': ''}`}
                        style={{width}}
                        value = {value}
-                       autoComplete={'off'}
+                       autoComplete={'on'}
                 />
             </div>
     );

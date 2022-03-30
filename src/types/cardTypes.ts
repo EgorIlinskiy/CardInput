@@ -1,5 +1,4 @@
-import {ChangeEvent, ChangeEventHandler} from "react";
-import {ActionMeta, MultiValue, SingleValue} from "react-select";
+import  {ChangeEventHandler} from "react";
 
 export interface ICustomInput{
     label:string;
@@ -30,3 +29,27 @@ export interface IFormValues{
     cardYear:string;
     cardMonth:string;
 }
+
+interface CardData{
+    cardId: number,
+    cardNumber: string,
+    cardMonth: string,
+    cardYear: string,
+    cardCVV: string
+}
+
+export interface CardStateType{
+    cards: CardData[]
+}
+
+
+export enum CardActionTypes {
+   ADD_CARD= 'ADD_CARD'
+}
+interface AddNewCard {
+    type: CardActionTypes.ADD_CARD,
+    payload: IFormValues
+}
+
+export type CardActions = AddNewCard
+
