@@ -1,8 +1,7 @@
-import {counterReducers} from "./counterReducers";
 import {combineReducers} from "redux";
-
+import {translationReducers} from './translationReducers'
 
 export const rootReducer = combineReducers({
-    counter: counterReducers
+    translation: translationReducers
 })
 export type RootState = ReturnType<typeof rootReducer>

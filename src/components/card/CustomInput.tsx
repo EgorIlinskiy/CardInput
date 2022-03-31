@@ -1,20 +1,24 @@
 import React from 'react';
 import {ICustomInput} from "../../types/cardTypes";
+import {PaymentsInputContainer, PaymentsCardInputText, PaymentsCardInput} from './CardStyledComponents'
 
-const CustomInput = ({label,errors, handleChange, name,placeholder, touched,value}:ICustomInput) => {
+
+const CustomInput = ({label,errors, handleChange, name,placeholder, touched,value,width}:ICustomInput) => {
 
     return (
-            <div className={'inputs-container'}>
-                <span className='card-input-text'>{label}</span>
-                <input type="text"
+
+            <PaymentsInputContainer>
+                <PaymentsCardInputText error={errors && touched ? 'error' : ''}>{label}</PaymentsCardInputText>
+                <PaymentsCardInput type="text"
                        onChange={handleChange}
                        name={name}
                        placeholder={placeholder}
-                       className='card-input'
+                       error={errors && touched ? 'payments-card-input-error': ''}
+                       style={{width}}
                        value = {value}
+                       autoComplete={'on'}
                 />
-                {errors && touched && <div className='card-error'>{errors}</div>}
-            </div>
+            </PaymentsInputContainer>
     );
 };
 

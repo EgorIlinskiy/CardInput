@@ -1,20 +1,26 @@
-import {ChangeEventHandler} from "react";
+import {ChangeEventHandler, ReactElement} from "react";
 
 export interface ICustomInput{
-    label:string;
+    label:ReactElement;
     errors?:string;
     handleChange:ChangeEventHandler<HTMLInputElement>;
     name:string;
     placeholder:string;
     touched?:boolean;
     value:string;
+    width?:string;
 }
 
 export interface ISelectInput{
-    value: string;
     id:string;
-    handleChange:ChangeEventHandler<HTMLInputElement>;
-    options: Object[];
+    handleChange:any;
+    options:any;
+    onBlur: any;
+    errors?:string;
+    name:string;
+    touched?:boolean;
+    placeholder?:ReactElement;
+    defaultValue: string;
 }
 
 
@@ -24,3 +30,19 @@ export interface IFormValues{
     cardYear:string;
     cardMonth:string;
 }
+
+interface CardData{
+    cardId: number,
+    cardNumber: string,
+    cardMonth: string,
+    cardYear: string,
+    cardCVV: string
+}
+
+export interface CardStateType{
+    cards: CardData[]
+    payMode: boolean,
+    preSelectedId: number
+
+}
+

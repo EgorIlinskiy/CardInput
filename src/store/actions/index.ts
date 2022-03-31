@@ -1,5 +1,5 @@
-import * as CounterActionCreators from './counter'
+import * as TranslationActionCreators from './translation'
 
 export default {
-    ...CounterActionCreators
+    ...TranslationActionCreators
 }

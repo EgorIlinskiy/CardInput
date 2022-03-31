@@ -1,0 +1,13 @@
+{
+  "app.card.header.main":"Payments",
+  "app.card.header.sub": "Pay with credit card",
+  "app.card.body.creditCardNumber": "Credit card number",
+  "app.card.body.creditCardExpiration.main": "Expiration",
+  "app.card.body.creditCardExpiration.month": "Month",
+  "app.card.body.creditCardExpiration.year": "Year",
+  "app.card.body.creditCardCvv.main": "CVV / CVC",
+  "app.card.body.creditCardCvv.sub": "3 or 4 digits code",
+  "app.card.body.submitButton.main": "Pay now",
+  "app.card.footer.chooseCards": "Choose card from the saved",
+  "app.card.footer.saveCard": "Save card"
+}
