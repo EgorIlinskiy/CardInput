@@ -17,7 +17,6 @@ const Translation:FC = (props)=>{
 
     let text = English;
    if(language === 'English') text = English
-
     else if(language === 'Russian') text = Russian
 
 
