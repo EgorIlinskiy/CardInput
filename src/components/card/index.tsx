@@ -6,6 +6,7 @@ import {useTypedSelector} from "../../hooks/useTypedSelector";
 import {ModeSelector} from "../../store/selectors/cardSelectors";
 import {PaymentsContainer, PaymentsHeader, PaymentsHeaderMain, PaymentsHeaderSecondary, PaymentsHeaderSecondaryText,
 PaymentsBody} from './CardStyledComponents'
+import {FormattedMessage} from "react-intl";
 
 const CardPayments = () => {
 
@@ -14,9 +15,19 @@ const CardPayments = () => {
     return (
         <PaymentsContainer>
             <PaymentsHeader>
-                <PaymentsHeaderMain>Payments</PaymentsHeaderMain>
+                <PaymentsHeaderMain>
+                    <FormattedMessage
+                        id = {"app.card.header.main"}
+                        defaultMessage={"Payments"}
+                    />
+                </PaymentsHeaderMain>
                <PaymentsHeaderSecondary>
-                   <PaymentsHeaderSecondaryText>Pay with credit card</PaymentsHeaderSecondaryText>
+                   <PaymentsHeaderSecondaryText>
+                       <FormattedMessage
+                           id = {"app.card.header.sub"}
+                           defaultMessage={"Pay with credit card"}
+                       />
+                   </PaymentsHeaderSecondaryText>
                    <VisaLogo/>
                </PaymentsHeaderSecondary>
             </PaymentsHeader>

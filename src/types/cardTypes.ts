@@ -1,7 +1,7 @@
-import  {ChangeEventHandler} from "react";
+import {ChangeEventHandler, ReactElement} from "react";
 
 export interface ICustomInput{
-    label:string;
+    label:ReactElement;
     errors?:string;
     handleChange:ChangeEventHandler<HTMLInputElement>;
     name:string;
@@ -19,7 +19,7 @@ export interface ISelectInput{
     errors?:string;
     name:string;
     touched?:boolean;
-    placeholder?:string;
+    placeholder?:ReactElement;
     defaultValue: string;
 }
 

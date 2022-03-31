@@ -1,0 +1,13 @@
+{
+  "app.card.header.main":"Оплата",
+  "app.card.header.sub": "Плати с помощью кредитной карты",
+  "app.card.body.creditCardNumber": "Номер кредитной карты",
+  "app.card.body.creditCardExpiration.main": "Истекает",
+  "app.card.body.creditCardExpiration.month": "Месяц",
+  "app.card.body.creditCardExpiration.year": "Год",
+  "app.card.body.creditCardCvv.main": "CVV",
+  "app.card.body.creditCardCvv.sub": "3 или 4 значный код",
+  "app.card.body.submitButton.main": "Оплатить",
+  "app.card.footer.chooseCards": "Выбрать карту из сохранённых",
+  "app.card.footer.saveCard": "Сохранить карту"
+}

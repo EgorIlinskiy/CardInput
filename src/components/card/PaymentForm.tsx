@@ -21,7 +21,7 @@ import {
     PaymentsSettingsSelect,
     PaymentsCardSubmit,
 } from './CardStyledComponents'
-
+import {FormattedMessage} from "react-intl";
 
 const PaymentForm = () => {
 
@@ -89,7 +89,10 @@ const PaymentForm = () => {
                              placeholder={'4585 -'}
                              errors={errors.cardNumber}
                              value={values.cardNumber}
-                             label={'Credit card number'}
+                             label={<FormattedMessage
+                                    id={"app.card.body.creditCardNumber"}
+                                    defaultMessage={'Credit card number'}
+                             />}
                 />
 
                 <PaymentsCardExpiration>
@@ -97,7 +100,10 @@ const PaymentForm = () => {
                     touched.cardMonth && touched.cardYear &&
                     errors.cardMonth && errors.cardYear ? 'error' :''}
                     >
-                        Expiration
+                        <FormattedMessage
+                            id={"app.card.body.creditCardExpiration.main"}
+                            defaultMessage={"Expiration"}
+                        />
                     </PaymentsCardExpirationText>
                     <CustomSelect
                         id={"cardMonth"}
@@ -110,7 +116,10 @@ const PaymentForm = () => {
                         defaultValue = {values.cardMonth}
                         errors = {errors.cardMonth}
                         touched={touched.cardMonth}
-                        placeholder = {'Month'}
+                        placeholder = {<FormattedMessage
+                            id={"app.card.body.creditCardExpiration.month"}
+                            defaultMessage={'Month'}
+                            />}
                     />
                     <CustomSelect
                         id={"cardYear"}
@@ -123,7 +132,10 @@ const PaymentForm = () => {
                         defaultValue = {values.cardYear}
                         errors = {errors.cardYear}
                         touched={touched.cardYear}
-                        placeholder = {'Year'}
+                        placeholder = {<FormattedMessage
+                            id={"app.card.body.creditCardExpiration.year"}
+                            defaultMessage={'Year'}
+                        />}
                     />
                 </PaymentsCardExpiration>
                 <PaymentsCardCvvContainer>
@@ -133,22 +145,34 @@ const PaymentForm = () => {
                                  placeholder={''}
                                  errors={errors.cardCVV}
                                  value={values.cardCVV}
-                                 label={'CVV / CVC'}
+                                 label={<FormattedMessage
+                                     id={"app.card.body.creditCardCvv.main"}
+                                     defaultMessage={'CVV / CVC'}
+                                 />}
                                  width={'auto'}
                     />
                     <PaymentsInputCVVText>
-                        3 or 4 digits code
+                        <FormattedMessage
+                            id={"app.card.body.creditCardCvv.sub"}
+                            defaultMessage={'3 or 4 digits code'}
+                        />
                     </PaymentsInputCVVText>
                 </PaymentsCardCvvContainer>
                 <PaymentsCardSubmit type='submit'>
-                    Pay now
+                    <FormattedMessage
+                    id={"app.card.body.submitButton.main"}
+                    defaultMessage={'Pay now'}
+                />
                 </PaymentsCardSubmit>
             <PaymentsCardLine/>
             <PaymentsSettings>
                 <PaymentsSettingsSelect
                     onClick={()=>{SwitchMode()}}
                 >
-                    Choose card from the saved
+                    <FormattedMessage
+                        id={"app.card.footer.chooseCards"}
+                        defaultMessage={'Choose card from the saved'}
+                    />
                 </PaymentsSettingsSelect>
                <PaymentsSettingLabel>
                    <input type={'checkbox'}
@@ -156,7 +180,10 @@ const PaymentForm = () => {
                           checked={values.saveCard}
                           onChange={handleChange}
                    />
-                       Save card
+                   <FormattedMessage
+                       id={"app.card.footer.saveCard"}
+                       defaultMessage={'Save card'}
+                   />
                </PaymentsSettingLabel>
 
            </PaymentsSettings>

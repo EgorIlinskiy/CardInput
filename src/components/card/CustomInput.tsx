@@ -1,13 +1,13 @@
 import React from 'react';
 import {ICustomInput} from "../../types/cardTypes";
-import {PayementsInputContainer, PaymentsCardInputText, PaymentsCardInput} from './CardStyledComponents'
+import {PaymentsInputContainer, PaymentsCardInputText, PaymentsCardInput} from './CardStyledComponents'
 
 
 const CustomInput = ({label,errors, handleChange, name,placeholder, touched,value,width}:ICustomInput) => {
 
     return (
 
-            <PayementsInputContainer>
+            <PaymentsInputContainer>
                 <PaymentsCardInputText error={errors && touched ? 'error' : ''}>{label}</PaymentsCardInputText>
                 <PaymentsCardInput type="text"
                        onChange={handleChange}
@@ -18,7 +18,7 @@ const CustomInput = ({label,errors, handleChange, name,placeholder, touched,valu
                        value = {value}
                        autoComplete={'on'}
                 />
-            </PayementsInputContainer>
+            </PaymentsInputContainer>
     );
 };
 

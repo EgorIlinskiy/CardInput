@@ -99,13 +99,20 @@ export const PaymentsCardCvvContainer = styled.div`
   justify-content: space-between;
   margin-bottom: 20px;
 `
-export const PayementsInputContainer = styled.div``
+export const PaymentsInputContainer = styled.div`
+display: flex;
+flex-direction: column;
+  align-items: start;
+  justify-content: start;
+`
 
 
 export const PaymentsInputCVVText = styled.div`
-  width: 50%;
+  width: auto;
+  
   color:rgb(137, 137, 137,0.8);
   padding-top:5%;
+  padding-right:13%;
 `
 
 export const PaymentsCardSubmit = styled.button`
