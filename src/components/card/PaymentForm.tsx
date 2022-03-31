@@ -1,18 +1,29 @@
 import React from 'react';
-import {useFormik, FormikProps, FormikHelpers, Field} from "formik";
+import {useFormik, FormikProps} from "formik";
 import * as yup from 'yup'
 import valid from 'card-validator'
-import './card.scss'
 import CustomInput from "./CustomInput";
-import SelectForm from "./SelectForm";
+import CustomSelect from "./CustomSelect";
 import {monthOptions, yearOptions} from "./options/optionsForSelect";
 import {IFormValues} from "../../types/cardTypes";
 import {useActions} from "../../hooks/useActions";
 import {SwitchMode} from "../../store/actions/card";
 import {useTypedSelector} from "../../hooks/useTypedSelector";
 import {CardsSelector, preSelectedIdSelector} from "../../store/selectors/cardSelectors";
+import {
+    PaymentsCardExpiration,
+    PaymentsCardExpirationText,
+    PaymentsCardCvvContainer,
+    PaymentsInputCVVText,
+    PaymentsCardLine,
+    PaymentsSettingLabel,
+    PaymentsSettings,
+    PaymentsSettingsSelect,
+    PaymentsCardSubmit,
+} from './CardStyledComponents'
 
-const InputForms = () => {
+
+const PaymentForm = () => {
 
     const {AddNewCard, SwitchMode} = useActions()
    const preSelected = useTypedSelector(preSelectedIdSelector)
@@ -81,10 +92,14 @@ const InputForms = () => {
                              label={'Credit card number'}
                 />
 
-                <div className={'payments-card-expiration'}>
-                    <div className={`payments-card-expiration-text ${touched.cardMonth && touched.cardYear && errors.cardMonth && errors.cardYear ? 'payments-card-input-text-error' :''}`
-                    }>Expiration</div>
-                    <SelectForm
+                <PaymentsCardExpiration>
+                    <PaymentsCardExpirationText error={
+                    touched.cardMonth && touched.cardYear &&
+                    errors.cardMonth && errors.cardYear ? 'error' :''}
+                    >
+                        Expiration
+                    </PaymentsCardExpirationText>
+                    <CustomSelect
                         id={"cardMonth"}
                         name={'cardMonth'}
                         handleChange={(option:any):any=> {
@@ -97,7 +112,7 @@ const InputForms = () => {
                         touched={touched.cardMonth}
                         placeholder = {'Month'}
                     />
-                    <SelectForm
+                    <CustomSelect
                         id={"cardYear"}
                         name={'cardYear'}
                         handleChange={(option:any):any=> {
@@ -110,8 +125,8 @@ const InputForms = () => {
                         touched={touched.cardYear}
                         placeholder = {'Year'}
                     />
-                </div>
-                <div className={'payments-card-input-cvv'}>
+                </PaymentsCardExpiration>
+                <PaymentsCardCvvContainer>
                     <CustomInput name={'cardCVV'}
                                  touched={touched.cardCVV}
                                  handleChange={handleChange}
@@ -121,29 +136,32 @@ const InputForms = () => {
                                  label={'CVV / CVC'}
                                  width={'auto'}
                     />
-                    <span className={'payments-card-input-cvv-text'}>3 or 4 digits code</span>
-                </div>
-                <button type='submit' className='payments-card-submit'// disabled={Object.keys(errors).length>0}
-                 >Pay now</button>
-            <div className={'payments-card-line'}></div>
-            <div className={'payments-card-settings'}>
-                <div className={'payments-card-settings-select'}
+                    <PaymentsInputCVVText>
+                        3 or 4 digits code
+                    </PaymentsInputCVVText>
+                </PaymentsCardCvvContainer>
+                <PaymentsCardSubmit type='submit'>
+                    Pay now
+                </PaymentsCardSubmit>
+            <PaymentsCardLine/>
+            <PaymentsSettings>
+                <PaymentsSettingsSelect
                     onClick={()=>{SwitchMode()}}
                 >
                     Choose card from the saved
-                </div>
-               <label>
+                </PaymentsSettingsSelect>
+               <PaymentsSettingLabel>
                    <input type={'checkbox'}
                           name={'saveCard'}
                           checked={values.saveCard}
                           onChange={handleChange}
                    />
                        Save card
-               </label>
+               </PaymentsSettingLabel>
 
-           </div>
+           </PaymentsSettings>
             </form>
     );
 };
 
-export default InputForms;
+export default PaymentForm;

@@ -1,10 +1,10 @@
 import React from 'react'
 import Select, {StylesConfig} from 'react-select'
 import {ISelectInput} from "../../types/cardTypes";
+import {PaymentsCardExpirationSelect} from './CardStyledComponents'
 
 
-
-function SelectForm( {handleChange, options,errors,onBlur,id,name,touched,placeholder, defaultValue}:ISelectInput) {
+function CustomSelect({handleChange, options,errors,onBlur,id,name,touched,placeholder, defaultValue}:ISelectInput) {
      const customStyles: StylesConfig<any> = {
          control: (provided) => {
              return {
@@ -20,7 +20,7 @@ function SelectForm( {handleChange, options,errors,onBlur,id,name,touched,placeh
          })
      };
 
-         return  <div className={'payments-card-expiration-select'}>
+         return  <PaymentsCardExpirationSelect>
            <Select
                options={options}
                onChange={handleChange}
@@ -30,9 +30,9 @@ function SelectForm( {handleChange, options,errors,onBlur,id,name,touched,placeh
                placeholder={defaultValue === '' ? placeholder : defaultValue}
                styles={customStyles}
            />
-       </div>
+       </PaymentsCardExpirationSelect>
 }
 
 
 
-export default SelectForm
+export default CustomSelect

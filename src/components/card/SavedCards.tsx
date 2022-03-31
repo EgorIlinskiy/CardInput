@@ -3,6 +3,7 @@ import {useTypedSelector} from "../../hooks/useTypedSelector";
 import VisaLogo from '../../assets/VisaLogo'
 import {useActions} from "../../hooks/useActions";
 import {CardsSelector} from "../../store/selectors/cardSelectors";
+import {PaymentsCardsSaved, PaymentsCardsSavedContainer, PaymentsCardsSavedRow} from './CardStyledComponents'
 
 const SavedCards = () => {
 
@@ -12,27 +13,26 @@ const SavedCards = () => {
 
     const renderCards = () =>{
         return cards.map((card)=>{
-         return  <div key={card.cardId}
-                      className={'payments-card-saved-container'}
+         return  <PaymentsCardsSavedContainer key={card.cardId}
                       onClick={()=>{
                           SetPreselectedCard(card.cardId);
                       }}
                 >
                 <div>{card.cardNumber}</div>
-                    <div className={'payments-card-saved-row'}>
+                    <PaymentsCardsSavedRow>
                         <VisaLogo/>
                         <span>
                              {card.cardMonth} / {card.cardYear.slice(2)}
                         </span>
-                    </div>
-            </div>
+                    </PaymentsCardsSavedRow>
+            </PaymentsCardsSavedContainer>
         })
     }
 
     return (
-        <div className={'payments-card-saved'}>
+        <PaymentsCardsSaved>
             {renderCards()}
-        </div>
+        </PaymentsCardsSaved>
     );
 };
 
