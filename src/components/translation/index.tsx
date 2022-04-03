@@ -8,34 +8,40 @@ import {useActions} from "../../hooks/useActions";
 import Ru from '../../assets/RU.png'
 import En from '../../assets/US.png'
 import {SetLanguagesContainer} from "./TranslationStyledComponents";
+import {PossibleLanguages} from "../../types/languageTypes";
 
 const Translation:FC = (props)=>{
 
     const local = navigator.language;
     let language = useTypedSelector(selectLanguage);
-    const {SetEnglishLang, SetRussianLang} = useActions()
+    const {setEnglishLang, setRussianLang} = useActions()
+    let messages
 
-    let text = English;
-   if(language === 'English') text = English
-    else if(language === 'Russian') text = Russian
-
+   switch(language){
+       case PossibleLanguages.ENGLISH:
+           messages = English
+           break;
+       case PossibleLanguages.RUSSIAN:
+           messages = Russian
+           break;
+       default: messages = English
+   }
 
      return <IntlProvider locale={local}
-                          messages={text}
+                          messages={messages}
             >
                 <SetLanguagesContainer>
                     <img src={Ru}
                          alt="RU"
-                         onClick={()=> SetRussianLang()}
+                         onClick={()=> setRussianLang()}
                     />
                     <img src={En}
                          alt="Eng"
-                         onClick={()=> SetEnglishLang()}
+                         onClick={()=> setEnglishLang()}
                     />
                 </SetLanguagesContainer>
                 {props.children}
             </IntlProvider>
-
 }
 
 export default Translation;

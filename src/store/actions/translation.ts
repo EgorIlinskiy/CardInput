@@ -1,11 +1,9 @@
 import {LanguageAction, LanguageActionTypes} from "../../types/languageTypes";
 
-export function SetEnglishLang():LanguageAction{
+export function setEnglishLang():LanguageAction{
     return {type: LanguageActionTypes.SET_ENGLISH}
-
 }
 
-export function SetRussianLang():LanguageAction{
+export function setRussianLang():LanguageAction{
     return {type: LanguageActionTypes.SET_RUSSIAN}
-
 }

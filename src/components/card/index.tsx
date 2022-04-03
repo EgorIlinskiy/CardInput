@@ -1,12 +1,11 @@
 import React from 'react';
 import PaymentForm from "./PaymentForm";
-import VisaLogo from "../../assets/VisaLogo";
 import {PaymentsContainer, PaymentsHeader, PaymentsHeaderMain, PaymentsHeaderSecondary, PaymentsHeaderSecondaryText,
 PaymentsBody} from './CardStyledComponents'
 import {FormattedMessage} from "react-intl";
+import CardLogoSwitcher from "./CardLogoSwitcher";
 
 const CardPayments = () => {
-
 
     return (
         <PaymentsContainer>
@@ -24,7 +23,7 @@ const CardPayments = () => {
                            defaultMessage={"Pay with credit card"}
                        />
                    </PaymentsHeaderSecondaryText>
-                   <VisaLogo/>
+                   <CardLogoSwitcher/>
                </PaymentsHeaderSecondary>
             </PaymentsHeader>
             <PaymentsBody>

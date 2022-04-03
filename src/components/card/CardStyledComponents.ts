@@ -1,4 +1,6 @@
 import styled,{createGlobalStyle} from 'styled-components'
+import Select from 'react-select'
+import {ICustomSelect} from "../../types/cardTypes";
 
 interface ICustomInput{
     error: string;
@@ -186,4 +188,13 @@ export const PaymentsCardsSavedRow = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
+`
+
+export const StyledReactSelect = styled(Select)<ICustomSelect>`
+  border-color:${props => props.error && props.touched  ? 'red': 'rgb(137, 137, 137,0.5)'};
+`
+
+export const LogoContainer = styled.div`
+    max-width: 100px;
+    height: 40px;
 `

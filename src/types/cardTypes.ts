@@ -13,7 +13,7 @@ export interface ICustomInput{
 
 export interface ISelectInput{
     id:string;
-    handleChange:any;
+    handleChange:ChangeEventHandler<HTMLSelectElement>;
     options:any;
     onBlur: any;
     errors?:string;
@@ -22,7 +22,6 @@ export interface ISelectInput{
     placeholder?:ReactElement;
     defaultValue: string;
 }
-
 
 export interface IFormValues{
     cardNumber:string;
@@ -46,3 +45,27 @@ export interface CardStateType{
 
 }
 
+export interface ICustomSelect{
+    error?:string;
+    touched?: boolean;
+    onChange:any;
+}
+
+export interface ICardLogoState{
+    cardType?:string
+}
+
+export enum CardActionTypes{
+    SET_TYPE = 'SET_TYPE'
+}
+
+export enum CardTypes{
+    VISA = 'Visa',
+    MASTERCARD = 'Mastercard'
+}
+
+interface SetCardType{
+    type: CardActionTypes.SET_TYPE,
+    payload?:string
+}
+export type CardTypesActions = SetCardType
