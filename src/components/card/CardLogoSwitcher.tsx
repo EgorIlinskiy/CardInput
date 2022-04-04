@@ -7,6 +7,7 @@ import {CardTypes} from "../../types/cardTypes";
 import {LogoContainer} from "./CardStyledComponents";
 
 const CardLogoSwitcher = () => {
+
     let type = useTypedSelector(selectCardType)
 
     function logoRender(){

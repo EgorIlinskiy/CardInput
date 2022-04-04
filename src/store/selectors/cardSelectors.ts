@@ -1,10 +1,10 @@
 import {RootState} from "../reducers";
 
-export function CardsSelector(state:RootState){
+export function cardsSelector(state:RootState){
     return state.card.cards
 }
 
-export function ModeSelector(state:RootState){
+export function modeSelector(state:RootState){
     return state.card.payMode
 }
 

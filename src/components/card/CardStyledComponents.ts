@@ -21,7 +21,6 @@ export const GlobalStyles = createGlobalStyle`
   }
 `
 
-
 export const PaymentsContainer = styled.div`
   background: #fff;
   border-radius: 5px;
@@ -40,6 +39,7 @@ export const PaymentsHeader = styled.div`
   margin-bottom: 50px;
   padding-left: 3px;
 `
+
 export const PaymentsHeaderMain = styled.div`
   font-size: 3rem;
   width: 100%;
@@ -75,6 +75,7 @@ export const PaymentsCardInput = styled.input<ICustomInput>`
   font-family: 'Open Sans', sans-serif;
   border: ${props => props.error ? '1px solid rgb(255, 26, 26,0.5)': '1px solid rgb(137, 137, 137,0.5)'};
 `
+
 export const PaymentsCardExpiration = styled.div`
     display: flex;
     flex-direction: row;
@@ -89,6 +90,7 @@ export const PaymentsCardExpirationText = styled.div<ICustomText>`
   padding-left: 3px;
   color: ${props => props.error !== '' ? 'rgb(255, 26, 26)' : '#000'};
 `
+
 export const PaymentsCardExpirationSelect = styled.div`
   margin-bottom: 20px;
   width: 45%;
@@ -101,6 +103,7 @@ export const PaymentsCardCvvContainer = styled.div`
   justify-content: space-between;
   margin-bottom: 20px;
 `
+
 export const PaymentsInputContainer = styled.div`
 display: flex;
 flex-direction: column;
@@ -108,17 +111,14 @@ flex-direction: column;
   justify-content: start;
 `
 
-
 export const PaymentsInputCVVText = styled.div`
   width: auto;
-  
   color:rgb(137, 137, 137,0.8);
   padding-top:5%;
   padding-right:13%;
 `
 
 export const PaymentsCardSubmit = styled.button`
-
   color:white;
   background: #488bdb;
   border:none;
@@ -141,6 +141,7 @@ export const PaymentsCardLine = styled.div`
   height: 20px;
   border-bottom: 1px solid #4c92e7;
 `
+
 export const PaymentsSettings = styled.div`
   height: 30px;
   margin-top: 30px;
@@ -150,6 +151,7 @@ export const PaymentsSettings = styled.div`
   justify-content: space-around;
   user-select:none;
 `
+
 export const PaymentsSettingLabel = styled.label`
   cursor: pointer 
 `

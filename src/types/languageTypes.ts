@@ -8,7 +8,6 @@ export enum LanguageActionTypes {
 
 export type LanguageString = keyof ILanguages;
 
-
 interface setLanguage{
     type:LanguageActionTypes.SET_LANGUAGE,
     payload:keyof ILanguages;

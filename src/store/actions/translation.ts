@@ -6,12 +6,16 @@ export function setLanguage(lang:LanguageString):LanguageAction{
         payload:lang
     }
 }
-export function SetEnglishLang():LanguageAction{
-    return {type: LanguageActionTypes.SET_ENGLISH}
 
+export function SetEnglishLang():LanguageAction{
+    return {
+        type: LanguageActionTypes.SET_ENGLISH
+    }
 }
 
 export function SetRussianLang():LanguageAction{
-    return {type: LanguageActionTypes.SET_RUSSIAN}
+    return {
+        type: LanguageActionTypes.SET_RUSSIAN
+    }
 
 }

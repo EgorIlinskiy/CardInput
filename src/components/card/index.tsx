@@ -1,20 +1,22 @@
 import React from 'react';
 import PaymentForm from "./PaymentForm";
-import {PaymentsContainer, PaymentsHeader, PaymentsHeaderMain, PaymentsHeaderSecondary, PaymentsHeaderSecondaryText,
-PaymentsBody} from './CardStyledComponents'
+import {
+    PaymentsContainer,
+    PaymentsHeader,
+    PaymentsHeaderMain,
+    PaymentsHeaderSecondary,
+    PaymentsHeaderSecondaryText,
+    PaymentsBody
+} from './CardStyledComponents'
 import {FormattedMessage} from "react-intl";
 import CardLogoSwitcher from "./CardLogoSwitcher";
-import VisaLogo from "../../assets/VisaLogo";
 import SavedCards from "./SavedCards";
 import {useTypedSelector} from "../../hooks/useTypedSelector";
-import {ModeSelector} from "../../store/selectors/cardSelectors";
+import {modeSelector} from "../../store/selectors/cardSelectors";
 
 const CardPayments = () => {
 
-
-const CardPayments = () => {
-
-    const payMode = useTypedSelector(ModeSelector)
+    const payMode = useTypedSelector(modeSelector)
 
     return (
         <PaymentsContainer>
@@ -32,7 +34,7 @@ const CardPayments = () => {
                            defaultMessage={"Pay with credit card"}
                        />
                    </PaymentsHeaderSecondaryText>
-                   <VisaLogo/>
+                   <CardLogoSwitcher/>
                </PaymentsHeaderSecondary>
             </PaymentsHeader>
             <PaymentsBody>

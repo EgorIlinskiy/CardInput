@@ -21,18 +21,18 @@ function CustomSelect({handleChange, options,errors,onBlur,id,name,touched,place
     };
 
          return  <PaymentsCardExpirationSelect>
-           <StyledReactSelect
-               options={options}
-               onChange={handleChange}
-               id={id}
-               name={name}
-               onBlur={onBlur}
-               error = {errors}
-               touched = {touched}
-               placeholder={defaultValue === '' ? placeholder : defaultValue}
-               styles={customStyles}
-           />
-       </PaymentsCardExpirationSelect>
+                   <StyledReactSelect
+                       options={options}
+                       onChange={handleChange}
+                       id={id}
+                       name={name}
+                       onBlur={onBlur}
+                       error = {errors}
+                       touched = {touched}
+                       placeholder={defaultValue === '' ? placeholder : defaultValue}
+                       styles={customStyles}
+                   />
+                </PaymentsCardExpirationSelect>
 }
 
 export default CustomSelect
