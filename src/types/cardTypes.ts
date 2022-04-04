@@ -12,8 +12,9 @@ export interface ICustomInput{
 }
 
 export interface ISelectInput{
+    value: string;
     id:string;
-    handleChange:any;
+    handleChange:ChangeEventHandler<HTMLSelectElement>;
     options:any;
     onBlur: any;
     errors?:string;
@@ -57,6 +58,7 @@ interface AddNewCard {
     type: CardActionTypes.ADD_CARD,
     payload: IFormValues
 }
+
 interface SwitchView{
     type: CardActionTypes.SWITCH_VIEW
 }
@@ -69,3 +71,42 @@ interface SetPreselectedCard{
 
 export type CardActions = AddNewCard | SwitchView | SetPreselectedCard
 
+interface CardData{
+    cardId: number,
+    cardNumber: string,
+    cardMonth: string,
+    cardYear: string,
+    cardCVV: string
+}
+
+export interface CardStateType{
+    cards: CardData[]
+    payMode: boolean,
+    preSelectedId: number
+
+}
+
+export interface ICustomSelect{
+    error?:string;
+    touched?: boolean;
+    onChange:any;
+}
+
+export interface ICardLogoState{
+    cardType?:string
+}
+
+export enum CardActionTypes{
+    SET_TYPE = 'SET_TYPE'
+}
+
+export enum CardTypes{
+    VISA = 'Visa',
+    MASTERCARD = 'Mastercard'
+}
+
+interface SetCardType{
+    type: CardActionTypes.SET_TYPE,
+    payload?:string
+}
+export type CardTypesActions = SetCardType

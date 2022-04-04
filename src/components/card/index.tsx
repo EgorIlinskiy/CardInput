@@ -1,12 +1,16 @@
 import React from 'react';
 import PaymentForm from "./PaymentForm";
+import {PaymentsContainer, PaymentsHeader, PaymentsHeaderMain, PaymentsHeaderSecondary, PaymentsHeaderSecondaryText,
+PaymentsBody} from './CardStyledComponents'
+import {FormattedMessage} from "react-intl";
+import CardLogoSwitcher from "./CardLogoSwitcher";
 import VisaLogo from "../../assets/VisaLogo";
 import SavedCards from "./SavedCards";
 import {useTypedSelector} from "../../hooks/useTypedSelector";
 import {ModeSelector} from "../../store/selectors/cardSelectors";
-import {PaymentsContainer, PaymentsHeader, PaymentsHeaderMain, PaymentsHeaderSecondary, PaymentsHeaderSecondaryText,
-PaymentsBody} from './CardStyledComponents'
-import {FormattedMessage} from "react-intl";
+
+const CardPayments = () => {
+
 
 const CardPayments = () => {
 

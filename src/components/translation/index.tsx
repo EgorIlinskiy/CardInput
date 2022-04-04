@@ -1,41 +1,48 @@
-import React, {FC} from 'react';
-import {IntlProvider} from 'react-intl'
-import English from '../../languages/en-US.json'
-import Russian from '../../languages/ru-RU.json'
+import React, {FC, useState} from 'react';
+import { IntlProvider} from 'react-intl'
 import {useTypedSelector} from "../../hooks/useTypedSelector";
 import {selectLanguage} from "../../store/selectors/translationSelectors";
 import {useActions} from "../../hooks/useActions";
-import Ru from '../../assets/RU.png'
-import En from '../../assets/US.png'
 import {SetLanguagesContainer} from "./TranslationStyledComponents";
+import {messages} from '../../languages'
+import {LanguageString} from "../../types/languageTypes";
 
 const Translation:FC = (props)=>{
 
     const local = navigator.language;
-    let language = useTypedSelector(selectLanguage);
-    const {SetEnglishLang, SetRussianLang} = useActions()
+    const selectedLanguage = useTypedSelector(selectLanguage);
+    const {setLanguage} = useActions()
+    const [lang, setLang] = useState('English')
 
-    let text = English;
-   if(language === 'English') text = English
-    else if(language === 'Russian') text = Russian
+    const selectingLanguage = (e:React.ChangeEvent<HTMLSelectElement>)=>{
+        setLang(e.target.value)
+        let newLang = e.target.value as LanguageString
+        setLanguage(newLang)
+    }
 
+    const options = ()=>{
+       return Object.getOwnPropertyNames(messages).map((language,index)=>{
+            return <option key={index}
+                           value={`${language}`}
+            >
+                {language}
+            </option>
+        })
+    }
 
      return <IntlProvider locale={local}
-                          messages={text}
+                          messages={messages[selectedLanguage]}
             >
                 <SetLanguagesContainer>
-                    <img src={Ru}
-                         alt="RU"
-                         onClick={()=> SetRussianLang()}
-                    />
-                    <img src={En}
-                         alt="Eng"
-                         onClick={()=> SetEnglishLang()}
-                    />
+                    <select name="select"
+                            onChange={selectingLanguage}
+                            value={lang}
+                    >
+                        {options()}
+                    </select>
                 </SetLanguagesContainer>
                 {props.children}
             </IntlProvider>
-
 }
 
 export default Translation;

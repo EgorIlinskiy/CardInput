@@ -11,8 +11,8 @@ const initialState:CardStateType = {
         }
     ],
     payMode: true,
-    preSelectedId: 0
-
+    preSelectedId: 0,
+    cardType:"Visa"
 }
 
 export const cardReducers = (state = initialState, action: CardActions):CardStateType => {
@@ -40,7 +40,6 @@ export const cardReducers = (state = initialState, action: CardActions):CardStat
                 cardMonth: action.payload.cardMonth,
                 cardYear: action.payload.cardYear
             })
-            console.log(newCards)
             return {...state, cards:newCards}
 
         case CardActionTypes.SWITCH_VIEW:
@@ -49,10 +48,11 @@ export const cardReducers = (state = initialState, action: CardActions):CardStat
         case CardActionTypes.SET_PRESELECTED:
             return {...state, payMode:!state.payMode, preSelectedId: action.payload}
 
+        case CardActionTypes.SET_TYPE:
+            return {...state, cardType: action.payload}
+
         default:
             return state
     }
 
 }
-
-

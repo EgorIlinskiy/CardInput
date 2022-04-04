@@ -1,4 +1,4 @@
-import {CardActions, CardActionTypes, IFormValues} from "../../types/cardTypes";
+import {CardActions,CardTypesActions, CardActionTypes, IFormValues} from "../../types/cardTypes";
 
 export function AddNewCard(data:IFormValues):CardActions{
 
@@ -18,5 +18,11 @@ export function SetPreselectedCard(id:number):CardActions{
     return {
         type: CardActionTypes.SET_PRESELECTED,
         payload: id
+    }
+}
+export function setCardType(type: string | undefined):CardTypesActions{
+    return {
+        type: CardActionTypes.SET_TYPE,
+        payload: type
     }
 }

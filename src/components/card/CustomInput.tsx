@@ -5,9 +5,7 @@ import {PaymentsInputContainer, PaymentsCardInputText, PaymentsCardInput} from '
 
 const CustomInput = ({label,errors, handleChange, name,placeholder, touched,value,width}:ICustomInput) => {
 
-    return (
-
-            <PaymentsInputContainer>
+    return  <PaymentsInputContainer>
                 <PaymentsCardInputText error={errors && touched ? 'error' : ''}>{label}</PaymentsCardInputText>
                 <PaymentsCardInput type="text"
                        onChange={handleChange}
@@ -19,7 +17,6 @@ const CustomInput = ({label,errors, handleChange, name,placeholder, touched,valu
                        autoComplete={'on'}
                 />
             </PaymentsInputContainer>
-    );
 };
 
 export default CustomInput;

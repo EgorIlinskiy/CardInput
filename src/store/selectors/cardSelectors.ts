@@ -11,3 +11,7 @@ export function ModeSelector(state:RootState){
 export function preSelectedIdSelector(state:RootState){
     return state.card.preSelectedId
 }
+
+export function selectCardType(state:RootState){
+    return state.card.cardType
+}
