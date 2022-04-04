@@ -1,0 +1,13 @@
+{
+  "app.card.header.main":"Zahlung",
+  "app.card.header.sub": "Bezahlen Sie mit einer Kreditkarte",
+  "app.card.body.creditCardNumber": "Kreditkartennummer",
+  "app.card.body.creditCardExpiration.main": "Läuft ab",
+  "app.card.body.creditCardExpiration.month": "Monat",
+  "app.card.body.creditCardExpiration.year": "Jahr",
+  "app.card.body.creditCardCvv.main": "CVV",
+  "app.card.body.creditCardCvv.sub": "3- oder 4-stelliger Code",
+  "app.card.body.submitButton.main": "Zahlen",
+  "app.card.footer.chooseCards": "Wählen Sie eine Karte aus den gespeicherten aus",
+  "app.card.footer.saveCard": "Karte speichern"
+}
