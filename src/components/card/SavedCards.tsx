@@ -3,10 +3,15 @@ import {useTypedSelector} from "../../hooks/useTypedSelector";
 import {useActions} from "../../hooks/useActions";
 import {cardsSelector} from "../../store/selectors/cardSelectors";
 import {
+    LogoCardContainer,
     PaymentsCardsSaved,
     PaymentsCardsSavedContainer,
-    PaymentsCardsSavedRow
+    PaymentsCardsSavedRow,
+
 } from './CardStyledComponents'
+import VisaLogo from "../../assets/VisaLogo";
+import MasterCardLogo from "../../assets/MasterCardLogo";
+import valid from "card-validator";
 
 const SavedCards = () => {
 
@@ -23,6 +28,10 @@ const SavedCards = () => {
                 >
                 <div>{card.cardNumber}</div>
                     <PaymentsCardsSavedRow>
+                        <LogoCardContainer>
+                            {valid.number(card.cardNumber).card?.niceType === 'Visa' ?
+                                <VisaLogo/> : <MasterCardLogo/>}
+                        </LogoCardContainer>
                         <span>
                              {card.cardMonth} / {card.cardYear.slice(2)}
                         </span>

@@ -200,3 +200,10 @@ export const LogoContainer = styled.div`
     max-width: 100px;
     height: 40px;
 `
+
+export const LogoCardContainer = styled.div`
+  max-width: 100px;
+  height: 78px;
+  display: flex;
+  align-items: center;
+`
