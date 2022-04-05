@@ -8,6 +8,13 @@ const initialState:CardStateType = {
             cardMonth: "10",
             cardYear: "2026",
             cardCVV: "123"
+        },
+        {
+            cardId:10,
+            cardNumber: "5425233430109903",
+            cardMonth: "03",
+            cardYear: "2022",
+            cardCVV: "773"
         }
     ],
     payMode: true,
