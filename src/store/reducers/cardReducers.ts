@@ -25,8 +25,8 @@ const initialState:CardStateType = {
 export const cardReducers = (state = initialState, action: CardActions):CardStateType => {
     switch (action.type) {
         case CardActionTypes.ADD_CARD:
-            let newCards = state.cards;
-            let duplicate = state.cards.every((card)=>{
+            let newCards = [...state.cards];
+            let nonDuplicate = newCards.every((card)=>{
                 return !_.isEqual({
                     cardCVV: card.cardCVV,
                     cardNumber: card.cardNumber,
@@ -36,10 +36,10 @@ export const cardReducers = (state = initialState, action: CardActions):CardStat
                     cardCVV: action.payload.cardCVV,
                     cardNumber: action.payload.cardNumber,
                     cardMonth: action.payload.cardMonth,
-                    cardYear: action.payload.cardMonth
+                    cardYear: action.payload.cardYear
                 })
             })
-            if(duplicate)
+            if(nonDuplicate)
             newCards.push({
                 cardId: Date.now(),
                 cardCVV: action.payload.cardCVV,
