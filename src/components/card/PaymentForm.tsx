@@ -30,11 +30,14 @@ const PaymentForm = () => {
     const cardData = useTypedSelector(cardsSelector).filter(card=>{
         return card.cardId === preSelected
     })[0]
+
+    let {cardNumber, cardCVV,cardYear,cardMonth} = cardData || {}
+
     const initialValues:IFormValues = {
-        cardNumber: cardData !== undefined ? cardData.cardNumber : '',
-        cardCVV:cardData !== undefined ? cardData.cardCVV : '',
-        cardYear: cardData !== undefined ? cardData.cardYear : '',
-        cardMonth:cardData !== undefined ? cardData.cardMonth : '',
+        cardNumber: cardNumber  ? cardNumber : '',
+        cardCVV: cardCVV ? cardCVV : '',
+        cardYear:  cardYear ? cardYear : '',
+        cardMonth: cardMonth ? cardMonth : '',
         saveCard: false
     }
 
