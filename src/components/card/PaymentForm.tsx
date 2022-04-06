@@ -27,11 +27,9 @@ const PaymentForm = () => {
 
     const {addNewCard, switchMode} = useActions()
     const preSelected = useTypedSelector(preSelectedIdSelector)
-    const cardData = useTypedSelector(cardsSelector).filter(card=>{
+    const {cardNumber, cardCVV,cardYear,cardMonth} = useTypedSelector(cardsSelector).filter(card=>{
         return card.cardId === preSelected
-    })[0]
-
-    let {cardNumber, cardCVV,cardYear,cardMonth} = cardData || {}
+    })[0] || {}
 
     const initialValues:IFormValues = {
         cardNumber: cardNumber  ? cardNumber : '',
