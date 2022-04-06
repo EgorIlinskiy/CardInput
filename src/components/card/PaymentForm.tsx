@@ -25,7 +25,7 @@ import valid from "card-validator";
 
 const PaymentForm = () => {
 
-    const {addNewCard, switchMode} = useActions()
+    const {addNewCard, switchMode, setCardType} = useActions()
     const preSelected = useTypedSelector(preSelectedIdSelector)
     const {cardNumber, cardCVV,cardYear,cardMonth} = useTypedSelector(cardsSelector).filter(card=>{
         return card.cardId === preSelected
@@ -38,8 +38,6 @@ const PaymentForm = () => {
         cardMonth: cardMonth ? cardMonth : '',
         saveCard: false
     }
-
-    let {setCardType} = useActions()
 
     useEffect(()=>{
         let type = valid.number(values.cardNumber).card?.niceType
