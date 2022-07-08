@@ -38,7 +38,9 @@ const Translation:FC = (props)=>{
                             onChange={selectingLanguage}
                             value={lang}
                     >
-                        {options()}
+                        {
+                            options()
+                        }
                     </select>
                 </SetLanguagesContainer>
                 {props.children}

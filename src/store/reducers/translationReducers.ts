@@ -8,6 +8,7 @@ export const translationReducers = (state = initialState, action: LanguageAction
     switch (action.type) {
         case LanguageActionTypes.SET_LANGUAGE:
             return {...state, language:action.payload }
+
         default:
             return state
     }

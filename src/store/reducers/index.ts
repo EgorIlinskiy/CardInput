@@ -1,10 +1,9 @@
 import {combineReducers} from "redux";
+import {cardReducers} from "./cardReducers";
 import {translationReducers} from './translationReducers'
-import {cardReducers} from './cardReducers'
 
 export const rootReducer = combineReducers({
-    translation: translationReducers,
-    card: cardReducers
+    card: cardReducers,
+    translation: translationReducers
 })
-
 export type RootState = ReturnType<typeof rootReducer>

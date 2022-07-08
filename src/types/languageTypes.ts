@@ -8,12 +8,10 @@ export enum LanguageActionTypes {
 
 export type LanguageString = keyof ILanguages;
 
-
 interface setLanguage{
     type:LanguageActionTypes.SET_LANGUAGE,
     payload:keyof ILanguages;
 }
-export type LanguageAction = setLanguage
 
 interface ILanguageFields{
     "app.card.header.main": string;
@@ -32,4 +30,7 @@ export interface ILanguages{
     Russian:ILanguageFields,
     English: ILanguageFields
 }
+
+
+export type LanguageAction = setLanguage
 

@@ -1,11 +1,22 @@
 import React from 'react';
 import PaymentForm from "./PaymentForm";
-import {PaymentsContainer, PaymentsHeader, PaymentsHeaderMain, PaymentsHeaderSecondary, PaymentsHeaderSecondaryText,
-PaymentsBody} from './CardStyledComponents'
+import {
+    PaymentsContainer,
+    PaymentsHeader,
+    PaymentsHeaderMain,
+    PaymentsHeaderSecondary,
+    PaymentsHeaderSecondaryText,
+    PaymentsBody
+} from './CardStyledComponents'
 import {FormattedMessage} from "react-intl";
 import CardLogoSwitcher from "./CardLogoSwitcher";
+import SavedCards from "./SavedCards";
+import {useTypedSelector} from "../../hooks/useTypedSelector";
+import {modeSelector} from "../../store/selectors/cardSelectors";
 
 const CardPayments = () => {
+
+    const payMode = useTypedSelector(modeSelector)
 
     return (
         <PaymentsContainer>
@@ -27,7 +38,7 @@ const CardPayments = () => {
                </PaymentsHeaderSecondary>
             </PaymentsHeader>
             <PaymentsBody>
-               <PaymentForm/>
+                {payMode  ?    <PaymentForm/> : <SavedCards/>}
             </PaymentsBody>
         </PaymentsContainer>
     );

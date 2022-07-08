@@ -3,7 +3,7 @@ import {ICustomInput} from "../../types/cardTypes";
 import {PaymentsInputContainer, PaymentsCardInputText, PaymentsCardInput} from './CardStyledComponents'
 
 
-const CustomInput = ({label,errors, handleChange, name,placeholder, touched,value,width}:ICustomInput) => {
+const CustomInput = ({label, errors, handleChange, name, placeholder, touched, value, width}:ICustomInput) => {
 
     return  <PaymentsInputContainer>
                 <PaymentsCardInputText error={errors && touched ? 'error' : ''}>{label}</PaymentsCardInputText>

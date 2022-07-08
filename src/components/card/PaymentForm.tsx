@@ -1,38 +1,48 @@
-import React, {useEffect, useState} from 'react';
-import {useFormik, FormikProps, useFormikContext} from "formik";
+import React, {useEffect} from 'react';
+import {useFormik, FormikProps} from "formik";
 import CustomInput from "./CustomInput";
 import CustomSelect from "./CustomSelect";
 import {monthOptions, yearOptions} from "./options/optionsForSelect";
 import {IFormValues} from "../../types/cardTypes";
+import {useActions} from "../../hooks/useActions";
+import {switchMode} from "../../store/actions/card";
+import {useTypedSelector} from "../../hooks/useTypedSelector";
+import {cardsSelector, preSelectedIdSelector} from "../../store/selectors/cardSelectors";
 import {
     PaymentsCardExpiration,
     PaymentsCardExpirationText,
     PaymentsCardCvvContainer,
     PaymentsInputCVVText,
     PaymentsCardSubmit,
+    PaymentsCardLine,
+    PaymentsSettings,
+    PaymentsSettingsSelect,
+    PaymentsSettingLabel
 } from './CardStyledComponents'
 import {FormattedMessage} from "react-intl";
 import {yupSchema} from "./options/validationSchemas";
 import valid from "card-validator";
-import {useActions} from "../../hooks/useActions";
 
 const PaymentForm = () => {
 
-    const initialValues:IFormValues = {
-        cardNumber: '',
-        cardCVV: '',
-        cardYear:'',
-        cardMonth: ''
-    }
+    const {addNewCard, switchMode, setCardType} = useActions()
+    const preSelected = useTypedSelector(preSelectedIdSelector)
+    const {cardNumber, cardCVV,cardYear,cardMonth} = useTypedSelector(cardsSelector).filter(card=>{
+        return card.cardId === preSelected
+    })[0] || {}
 
-    let {setCardType} = useActions()
+    const initialValues:IFormValues = {
+        cardNumber: cardNumber  ? cardNumber : '',
+        cardCVV: cardCVV ? cardCVV : '',
+        cardYear:  cardYear ? cardYear : '',
+        cardMonth: cardMonth ? cardMonth : '',
+        saveCard: false
+    }
 
     useEffect(()=>{
         let type = valid.number(values.cardNumber).card?.niceType
         setCardType(type)
     }, )
-
-
 
     const {
         values,
@@ -46,8 +56,8 @@ const PaymentForm = () => {
             initialValues,
 
             onSubmit: (values) => {
-                console.log(values)
-                console.log(valid.number(values.cardNumber))
+                 console.log(values)
+                if(values.saveCard) addNewCard(values)
             },
 
             validationSchema: yupSchema
@@ -60,7 +70,8 @@ const PaymentForm = () => {
                              placeholder={'4585 -'}
                              errors={errors.cardNumber}
                              value={values.cardNumber}
-                             label={<FormattedMessage
+                             label={
+                            <FormattedMessage
                                     id={"app.card.body.creditCardNumber"}
                                     defaultMessage={'Credit card number'}
                              />}
@@ -86,11 +97,12 @@ const PaymentForm = () => {
                         defaultValue = {values.cardMonth}
                         errors = {errors.cardMonth}
                         touched={touched.cardMonth}
-                        placeholder = {<FormattedMessage
+                        placeholder = {
+                        <FormattedMessage
                             id={"app.card.body.creditCardExpiration.month"}
                             defaultMessage={'Month'}
                             />}
-                    />
+                     />
                     <CustomSelect
                         id={"cardYear"}
                         name={'cardYear'}
@@ -102,7 +114,8 @@ const PaymentForm = () => {
                         defaultValue = {values.cardYear}
                         errors = {errors.cardYear}
                         touched={touched.cardYear}
-                        placeholder = {<FormattedMessage
+                        placeholder = {
+                        <FormattedMessage
                             id={"app.card.body.creditCardExpiration.year"}
                             defaultMessage={'Year'}
                         />}
@@ -115,7 +128,8 @@ const PaymentForm = () => {
                                  placeholder={''}
                                  errors={errors.cardCVV}
                                  value={values.cardCVV}
-                                 label={<FormattedMessage
+                                 label={
+                                <FormattedMessage
                                      id={"app.card.body.creditCardCvv.main"}
                                      defaultMessage={'CVV / CVC'}
                                  />}
@@ -134,6 +148,29 @@ const PaymentForm = () => {
                     defaultMessage={'Pay now'}
                 />
                 </PaymentsCardSubmit>
+            <PaymentsCardLine/>
+            <PaymentsSettings>
+                <PaymentsSettingsSelect
+                    onClick={()=>{switchMode()}}
+                >
+                    <FormattedMessage
+                        id={"app.card.footer.chooseCards"}
+                        defaultMessage={'Choose card from the saved'}
+                    />
+                </PaymentsSettingsSelect>
+               <PaymentsSettingLabel>
+                   <input type={'checkbox'}
+                          name={'saveCard'}
+                          checked={values.saveCard}
+                          onChange={handleChange}
+                   />
+                   <FormattedMessage
+                       id={"app.card.footer.saveCard"}
+                       defaultMessage={'Save card'}
+                   />
+               </PaymentsSettingLabel>
+
+           </PaymentsSettings>
             </form>
     );
 };

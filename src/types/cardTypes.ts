@@ -28,6 +28,7 @@ export interface IFormValues{
     cardCVV:string;
     cardYear:string;
     cardMonth:string;
+    saveCard:any;
 }
 
 interface CardData{
@@ -39,10 +40,45 @@ interface CardData{
 }
 
 export interface CardStateType{
-    cards: CardData[]
-    payMode: boolean,
-    preSelectedId: number
+    cards: CardData[];
+    payMode: boolean;
+    preSelectedId: number;
+    cardType?:string;
+}
 
+export enum CardActionTypes {
+   ADD_CARD= 'ADD_CARD',
+   SWITCH_VIEW = 'SWITCH_VIEW',
+   SET_PRESELECTED = 'SET_PRESELECTED',
+   SET_TYPE = 'SET_TYPE'
+}
+interface AddNewCard {
+    type: CardActionTypes.ADD_CARD,
+    payload: IFormValues
+}
+
+interface SwitchView{
+    type: CardActionTypes.SWITCH_VIEW
+}
+
+interface SetPreselectedCard{
+    type: CardActionTypes.SET_PRESELECTED,
+    payload: number
+}
+
+interface SetCardType{
+    type: CardActionTypes.SET_TYPE,
+    payload?:string
+}
+
+export type CardActions = AddNewCard | SwitchView | SetPreselectedCard | SetCardType
+
+interface CardData{
+    cardId: number,
+    cardNumber: string,
+    cardMonth: string,
+    cardYear: string,
+    cardCVV: string
 }
 
 export interface ICustomSelect{
@@ -51,21 +87,9 @@ export interface ICustomSelect{
     onChange:any;
 }
 
-export interface ICardLogoState{
-    cardType?:string
-}
-
-export enum CardActionTypes{
-    SET_TYPE = 'SET_TYPE'
-}
-
 export enum CardTypes{
     VISA = 'Visa',
     MASTERCARD = 'Mastercard'
 }
 
-interface SetCardType{
-    type: CardActionTypes.SET_TYPE,
-    payload?:string
-}
 export type CardTypesActions = SetCardType
